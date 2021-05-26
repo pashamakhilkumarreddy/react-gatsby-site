@@ -7,7 +7,7 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Gatsby React Site",
+    title: "Gatsby React Demo",
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -18,7 +18,12 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-plugin-typography`,
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `${__dirname}/src/utils/typography`,
+    //   },
+    // },
     `gatsby-plugin-sharp`,
     "gatsby-plugin-image",
     {
