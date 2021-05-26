@@ -20,6 +20,7 @@ module.exports = {
     },
     `gatsby-plugin-typography`,
     `gatsby-plugin-sharp`,
+    "gatsby-plugin-image",
     {
       resolve: `gatsby-source-contentful`,
       options: {

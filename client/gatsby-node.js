@@ -24,8 +24,6 @@ const createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-  console.log(response.allContentfulBlogPost)
 }
 
 module.exports.createPages = createPages
