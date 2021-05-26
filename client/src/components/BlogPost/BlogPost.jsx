@@ -17,8 +17,12 @@ const BlogPost = ({
         <time dateTime={date} className="is-italic">
           {new Date(date).toGMTString()}
         </time>
-        <span className="px-2">&#124;</span>
-        <span>{timeToRead > 0 ? `${timeToRead} min` : ""}</span>
+        {timeToRead ? (
+          <>
+            <span className="px-2">&#124;</span>
+            <span>{timeToRead > 0 ? `${timeToRead} min` : ""}</span>
+          </>
+        ) : null}
       </div>
     </div>
   )
@@ -28,7 +32,7 @@ BlogPost.propTypes = {
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.any.isRequired,
-  timeToRead: PropTypes.number.isRequired,
+  timeToRead: PropTypes.number,
 }
 
 export default BlogPost

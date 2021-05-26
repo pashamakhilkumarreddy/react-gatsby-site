@@ -2,41 +2,39 @@ import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import Layout from "../layouts/MainLayout"
 import BlogPost from "../components/BlogPost"
+import Head from "../components/Head"
 
 const Blog = () => {
   const articles = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost {
         edges {
           node {
-            frontmatter {
-              title
-              description
-              date
-            }
-            fields {
-              slug
-            }
-            timeToRead
+            slug
+            title
+            publishedDate(formatString: "MMMM DD, YYYY")
           }
         }
       }
     }
   `)
   return (
-    <Layout>
-      <div className="columns is-justify-content-space-around is-vcentered is-mobile is-multiline">
-        {articles.allMarkdownRemark.edges.map(({ node }, i) => (
-          <BlogPost
-            key={i.toString()}
-            title={node.frontmatter.title}
-            slug={node.fields.slug}
-            date={node.frontmatter.date}
-            timeToRead={node.timeToRead}
-          />
-        ))}
-      </div>
-    </Layout>
+    <>
+      <Head title="Blog" />
+      <Layout>
+        <div className="columns is-justify-content-space-around is-vcentered is-mobile is-multiline">
+          {articles.allContentfulBlogPost.edges.map(({ node }, i) => (
+            <BlogPost
+              key={i.toString()}
+              title={node.title}
+              slug={node.slug}
+              date={node.publishedDate}
+              timeToRead={node.timeToRead}
+            />
+          ))}
+        </div>
+      </Layout>
+    </>
   )
 }
 
