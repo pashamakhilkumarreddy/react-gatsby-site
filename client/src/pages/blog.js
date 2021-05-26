@@ -1,9 +1,10 @@
 import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
-import Layout from "../layouts"
+import Layout from "../layouts/MainLayout"
+import BlogPost from "../components/BlogPost"
 
 const Blog = () => {
-  const markDownData = useStaticQuery(graphql`
+  const articles = useStaticQuery(graphql`
     query {
       allMarkdownRemark {
         edges {
@@ -11,7 +12,12 @@ const Blog = () => {
             frontmatter {
               title
               description
+              date
             }
+            fields {
+              slug
+            }
+            timeToRead
           }
         }
       }
@@ -19,14 +25,15 @@ const Blog = () => {
   `)
   return (
     <Layout>
-      <div className="columns is-centered is-vcentered is-mobile is-multiline">
-        {markDownData.allMarkdownRemark.edges.map(({ node }, i) => (
-          <div
-            className="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fulld box"
+      <div className="columns is-justify-content-space-around is-vcentered is-mobile is-multiline">
+        {articles.allMarkdownRemark.edges.map(({ node }, i) => (
+          <BlogPost
             key={i.toString()}
-          >
-            {node.frontmatter.title}
-          </div>
+            title={node.frontmatter.title}
+            slug={node.fields.slug}
+            date={node.frontmatter.date}
+            timeToRead={node.timeToRead}
+          />
         ))}
       </div>
     </Layout>

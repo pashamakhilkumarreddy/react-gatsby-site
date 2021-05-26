@@ -5,4 +5,6 @@ author: "React"
 date: "05-15-2021"
 ---
 
-React is a Javascript framework
+![React](../../assets/images/react.png)
+
+A JavaScript library for building user interfaces

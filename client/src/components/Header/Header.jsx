@@ -12,10 +12,10 @@ const Header = () => {
             <img src="" alt="Logo" loading="lazy" decoding="async" />
           </Link>
 
-          <span
+          <span // eslint-disable-line jsx-a11y/click-events-have-key-events
             role="button"
             className={`navbar-burger ${display ? "is-active" : ""}`}
-            onClick={() => setDisplay(!display)}
+            onClick={() => setDisplay(display => !display)}
             aria-label="menu"
             aria-expanded="false"
             data-target="main-navbar"
@@ -26,7 +26,10 @@ const Header = () => {
             <span aria-hidden="true"></span>
           </span>
         </div>
-        <div id="main-navbar" className="navbar-menu">
+        <div
+          id="main-navbar"
+          className={`navbar-menu ${display ? "is-active" : ""}`}
+        >
           <div className="navbar-start">
             <Link to="/" className="navbar-item">
               Home
